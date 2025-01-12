@@ -26,7 +26,6 @@ export class RegisterComponent {
     }, { validator: this.passwordMatchValidator });
   }
 
-  // Custom validator to check if passwords match
   passwordMatchValidator(control: AbstractControl): { [key: string]: boolean } | null {
     const password = control.get('password');
     const confirmPassword = control.get('confirmPassword');
@@ -46,10 +45,8 @@ export class RegisterComponent {
         return;
       }
 
-      // Remove confirmPassword from the data sent to the backend
       delete formData.confirmPassword;
 
-      // Call the register method to send data to the backend
       this.register(formData);
     } else {
       alert('Please fill out the form correctly!');
@@ -75,7 +72,7 @@ export class RegisterComponent {
       const data = await response.json();
       console.log('Registration successful:', data);
       alert('Registration successful!');
-      this.registerForm.reset(); // Reset the form after successful submission
+      this.registerForm.reset();
     } catch (error) {
       console.error('Registration failed:', error);
       alert('Registration failed. Please try again.');
